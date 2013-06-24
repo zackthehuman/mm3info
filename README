@@ -1,0 +1,52 @@
+= About =
+mm3info is an FCEUX script for extracting game information from Mega Man 3.
+This script was inspired by the "Mega Man 2 LASER EYES" script by miau.
+
+The purpose of this script is to be an aid in understanding the mechanics of 
+the NES game Mega Man 3. So far this script:
+
+	- Allows the display of object information, such as ID and Position
+	- Allows you to place Rock anywhere on screen by middle-clicking
+
+= Todo =
+	- Display object names
+	- Display object hit boxes
+
+
+= Mega Man 3 RAM Map =
+I am still studying the RAM is used by the game. Below are my findings up to
+this point in time.
+
+$00A2: Rock's health
+
+$0093: Object logic delay; if set to value other than 1, causes a counter 
+	at 0081) to count down from the value at 0081 to 0 before advancing the
+	logic one frame
+
+$0200-$02FF: Sprite data for DMA
+$0300-$05FF: Game object data
+	$0300-$031F: State index?
+	$0320-$033F: Type
+	$0340-$035F: Fractional X position
+	$0360-$037F: Whole X position
+	$0380-$039F: Screen number (which screen the object is in)
+	$03A0-$03BF: Fractional Y position
+	$03C0-$03DF: Whole Y position
+	$03E0-$03FF: Mystery #1 (if set to a non-zero value then object does not spawn or will disappear if already spawned)
+	$0400-$041F: Fractional X speed
+	$0420-$043F: Whole X speed
+	$0440-$045F: Fractional Y speed
+	$0460-$047F: Whole Y speed
+	$0480-$049F: Shield status. Shots bounce off when value = A1, but takes damage when value = C1
+	$04A0-$04BF: Direction
+	$04C0-$04DF: Mystery #2 / object number? on-screen number?
+	$04E0-$04FF: Hit points
+	$0500-$051F: Timer/counter 1
+	$0520-$053F: Timer/counter 2
+	$0540-$055F: Mystery #3 / seems like its not used
+	$0560-$057F: Value #1 (Spark man's raising platforms use this as their "return to" Y value)
+	$0580-$059F: Sprite direction? D0 = left, 90 = right
+	$05A0-$05BF: Sprite index (within animation)? (can affect behavior if animation doesn't change)
+	$05C0-$05DF: Animation sequence number (can affect behavior if animation doesn't change)
+	$05E0-$05FF: Animation counter or something (can affect behavior if animation doesn't change)
+$0600-$XXXX: Tile data starts here
